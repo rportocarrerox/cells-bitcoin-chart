@@ -37,11 +37,13 @@
     static get properties() {
       return {
         categoriesBitcoin: {type: Array, notify: true},
-        valuesBitcoin: {type: Array, notify: true}
+        valuesBitcoin: {type: Array, notify: true},
+        showChart: {type: Boolean, value: false, notify: true}
       };
     }
 
     drawBitcoinChart(evt){
+      this.showChart = true;
       let dataBitcoin = evt;
       this.categoriesBitcoin = this._formatTextData(dataBitcoin.dates);
       this.valuesBitcoin = dataBitcoin.values;
@@ -59,9 +61,13 @@
 
     static get template() {
       return html `
-      <vaadin-chart id="mychart" title="Price Bitcoin" subtitle="Per day" categories="[[categoriesBitcoin]]"> 
-        <vaadin-chart-series values="[[valuesBitcoin]]"></vaadin-chart-series> 
-        </vaadin-chart>
+      <template is="dom-if" if="[[showChart]]">
+        <center>
+        <vaadin-chart id="mychart" title="Price Bitcoin" categories="[[categoriesBitcoin]]"> 
+          <vaadin-chart-series values="[[valuesBitcoin]]"></vaadin-chart-series> 
+          </vaadin-chart>
+        </center>
+        </template>
       `;
     }
   }
