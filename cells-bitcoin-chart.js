@@ -42,9 +42,9 @@
     }
 
     drawBitcoinChart(evt){
-      let dataBitcoin = evt.detail;
-      this.categoriesBitcoin = _formatTextData(dataBitcoin.dates);
-      this.valuesBitcoin = _formatTextData(dataBitcoin.values);
+      let dataBitcoin = evt;
+      this.categoriesBitcoin = this._formatTextData(dataBitcoin.dates);
+      this.valuesBitcoin = dataBitcoin.values;
     }
 
     _formatTextData(dataStr){
